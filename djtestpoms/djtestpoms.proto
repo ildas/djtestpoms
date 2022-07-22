@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+option go_package = "github.com/gfg/djtestpoms";
+
+package djtestpoms;
+
+
+service StoreManager {
+  rpc CreateProduct(CreateProductRequest) returns (Product) {}
+  rpc EditProduct(ProductRequest) returns (Product) {}
+  rpc GetProducts(GetProductsRequest) returns (stream ProductStreamResponse) {}
+  rpc SearchProducts(SearchProductsRequest) returns (stream ProductStreamResponse) {}
+
+  rpc GetCategories(EmptyRequest) returns (stream Category) {}
+
+  rpc CreateOrder(CreateOrderRequest) returns (Order) {}
+  rpc ChangeOrderStatus(ChangeOrderStatusRequest) returns (Order) {}
+  rpc GetOrders(EmptyRequest) returns (stream Order) {}
+}
+
+message Product {
+  int64 id = 1;
+  string name = 2;
+  string color = 3;
+  float price = 4;
+  int64 category_id = 5;
+}
+
+message ProductRequest {
+  string apiKey = 1;
+  Product product = 2;
+}
+
+message CreateProductRequest {
+  string apiKey = 1;
+  string name = 2;
+  string color = 3;
+  float price = 4;
+  int64 category_id = 5;
+}
+
+message ProductStreamResponse {
+  optional Product product = 1;
+}
+
+message GetProductsRequest {
+  string apiKey = 1;
+  repeated int64 ids = 2;
+}
+message SearchProductsRequest {
+  string apiKey = 1;
+  string name = 2;
+}
+
+message Category {
+  int64 id = 1;
+  string name = 2;
+}
+
+message EmptyRequest {
+  string apiKey = 1;
+}
+
+enum OrderStatus {
+  CREATED = 0;
+  READY_TO_SHIP = 1;
+  SHIPPED = 2;
+  DELIVERED = 3;
+  CANCELLED = 4;
+}
+
+message Order {
+  int64 id = 1;
+  OrderStatus status = 2;
+  map<int64, int64> items = 3;
+}
+
+message CreateOrderRequest {
+  string apiKey = 1;
+  map<int64, int64> items = 2;
+}
+
+message ChangeOrderStatusRequest {
+  string apiKey = 1;
+  int64 order_id = 2;
+  OrderStatus status = 3;
+}
