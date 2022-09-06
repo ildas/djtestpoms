@@ -21,3 +21,14 @@ Please implement a small Apollo/GraphQL service, that consumes data from the gRP
   - No need to implement authorization; Auth token can be static, and also passed as en environment variable
 - GraphQL schema must be well defined
 - Basic error management must be implemented
+
+## Solution
+
+Please run the following code snippet
+
+```bash
+cd node-graphql-service
+npm run start
+```
+
+You can check the implementation of graphql by going to localhost:4000/graphql

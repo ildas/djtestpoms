@@ -7,15 +7,15 @@ package djtestpoms;
 
 service StoreManager {
   rpc CreateProduct(CreateProductRequest) returns (Product) {}
-  rpc EditProduct(ProductRequest) returns (Product) {}
-  rpc GetProducts(GetProductsRequest) returns (stream ProductStreamResponse) {}
-  rpc SearchProducts(SearchProductsRequest) returns (stream ProductStreamResponse) {}
+  rpc EditProduct(ProductRequest) returns (Product) {} // incorrect arguments
+  rpc GetProducts(GetProductsRequest) returns (stream ProductStreamResponse) {} //done
+  rpc SearchProducts(SearchProductsRequest) returns (stream ProductStreamResponse) {} //done
 
-  rpc GetCategories(EmptyRequest) returns (stream Category) {}
+  rpc GetCategories(EmptyRequest) returns (stream Category) {} //done
 
-  rpc CreateOrder(CreateOrderRequest) returns (Order) {}
-  rpc ChangeOrderStatus(ChangeOrderStatusRequest) returns (Order) {}
-  rpc GetOrders(EmptyRequest) returns (stream Order) {}
+  rpc CreateOrder(CreateOrderRequest) returns (Order) {} // major issue
+  rpc ChangeOrderStatus(ChangeOrderStatusRequest) returns (Order) {}// incorrect arguments
+  rpc GetOrders(EmptyRequest) returns (stream Order) {} //done
 }
 
 message Product {

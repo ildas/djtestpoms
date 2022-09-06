@@ -11,9 +11,15 @@ const typeDefs = gql`
     }
 
     type Query {
-    hello: String,
-    getProducts: [Product]
+        hello: String,
+    # getProducts: [Product]
     }
+
+    type Subscription {
+        getProducts : Product
+    }
+
+
 `
 
 module.exports = {typeDefs};
